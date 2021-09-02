@@ -38,7 +38,7 @@ number_of_complaints INT NOT NULL);
 CREATE TABLE Items
 (item_code INT NOT NULL PRIMARY KEY,
 item VARCHAR(50),
-unit_price INT,
+unit_price INT NOT NULL,
 company_id INT NOT NULL,
 FOREIGN KEY (company_id) REFERENCES Companies(company_id));
 
