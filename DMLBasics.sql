@@ -43,7 +43,8 @@ company_id INT NOT NULL,
 FOREIGN KEY (company_id) REFERENCES Companies(company_id));
 
 CREATE TABLE Sales
-(date_of_purchase DATETIME,
+(purchase_number INT NOT NULL PRIMARY KEY,
+date_of_purchase DATETIME,
 customer_id INT NOT NULL,
 item_code INT NOT NULL,
 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
