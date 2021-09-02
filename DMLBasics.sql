@@ -18,6 +18,7 @@ Postal_Code VARCHAR(20),
 City VARCHAR(50),
 FOREIGN KEY (EmpID) REFERENCES Employee(EmpID)); #Creating foreign key that uses EmpID from table 'Employee'.
 
+
 #Example 2 
 CREATE DATABASE IF NOT EXISTS customer;
 USE customer;
