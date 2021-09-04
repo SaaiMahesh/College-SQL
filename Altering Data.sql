@@ -35,7 +35,7 @@ VALUES
 
 TRUNCATE TABLE persons; #Removes all the data from the table but still retains the blank table whereas, DROP removes the table entirely.
 
-#Pracise Excercises
+#Practise Excercises
 #Q1. Add a column to customer table, name the column 'follow_up_now' (integer)
 USE Customer;
 ALTER TABLE Customers
