@@ -16,4 +16,4 @@ SELECT ABS(-264) AS "Absolute Value"; #Converts a given number to absolute value
 SELECT UnitPrice,Discontinued,ROUND(UnitPrice-Discontinued) FROM Products;
 
 USE Customer;
-SELECT first_name,last_name,concat(first_name," ",last_name) AS "Full Name" FROM Customers;
+SELECT first_name,last_name,concat(first_name," ",last_name) AS "Full Name" FROM Customers; #To retrieve concatenated result.
