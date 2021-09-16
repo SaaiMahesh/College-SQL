@@ -1,5 +1,6 @@
 USE customer;
 
+
 #SUBSTRING
 SELECT first_name, SUBSTRING(first_name,2,3) AS ExtractString FROM customers; #Gets the 2nd character from the first name and continues till the 3rd character from the 2nd character.
 
@@ -9,8 +10,6 @@ SELECT first_name, SUBSTRING(first_name,2,3) AS ExtractString FROM customers; #G
 
 USE northwind;
 SELECT OrderID,Quantity, CASE WHEN Quantity > 1 THEN "Quantity is greater than 1" WHEN Quantity < 2 THEN "Quantity lesser than 2" ELSE "Quantity is lesser than 4" END AS "Quantity Check" FROM order_details;
-
-SELECT FirstName,LastName,TitleOfCourtesy, CASE WHEN TitleOfCourtesy = "Ms." THEN "MISSUS" WHEN TitleOfCourtesy = "Mr." THEN "MISTER" WHEN TitleOfCourtesy = "Mrs." THEN "MISTRESS" WHEN TitleOfCourtesy = "Dr." THEN "DOCTOR" END AS "Extended Titles" FROM Employees;
 
 SELECT CustomerID,Country FROM Customers ORDER BY Country DESC; #Default ORDER BY is ascending.
 
@@ -23,7 +22,7 @@ USE Customer;
 #Creating functions. 
 #Here we create concact function.
 CREATE FUNCTION Full_Name(first_name CHAR(20),last_name CHAR(20))
-RETURNS CHAR(55) DETERMINISTIC
+RETURNS CHAR(55) DETERMINISTIC #Deterministic means that it will return the same function with the parameters that have been input.
 RETURN CONCAT(first_name," ",last_name);
 
 #Using the concat function that we've created.
@@ -46,3 +45,35 @@ SELECT First_Name,trim(First_Name) AS TrimmedNames FROM RandomNames;
 
 #Length function
 SELECT First_Name,length(First_Name) FROM RandomNames;
+
+#CASE in SELECT (Used for setting multiple conditions within the SELECT cmd)
+SELECT FirstName,LastName,TitleOfCourtesy, CASE WHEN TitleOfCourtesy = "Ms." THEN "MISSUS" WHEN TitleOfCourtesy = "Mr." THEN "MISTER" WHEN TitleOfCourtesy = "Mrs." THEN "MISTRESS" WHEN TitleOfCourtesy = "Dr." THEN "DOCTOR" END AS "Extended Titles" FROM Employees;
+
+#Creating function for setting extended titles rather than using CASE-WHEN-THEN-END in SELECT
+DELIMITER // #Delimiter // (start) Delimiter ; (end) other than the default ; is used to specify that the block enclosed within the delimiter is a whole and not parts. Otherwise, begin-end will not work.
+
+BEGIN
+
+   DECLARE ExtendedTitle CHAR(20);
+
+   IF TitleOfCourtesy = "Mr." THEN
+      SET ExtendedTitle = 'Mister';
+
+   ELSEIF TitleOfCourtesy = "Mrs." THEN
+      SET ExtendedTitle = 'Mistress';
+      
+   ELSEIF TitleOfCourtesy = "Ms." THEN
+      SET ExtendedTitle = 'Missus';
+      
+   ELSE
+      SET ExtendedTitle = 'Doctor';
+
+   END IF;
+
+   RETURN ExtendedTitle;
+
+END; //
+
+DELIMITER ; 
+
+SELECT FirstName,LastName,Title(TitleOfCourtesy) AS "ExtendedTitle" FROM Employees;
