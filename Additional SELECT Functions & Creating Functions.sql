@@ -50,6 +50,10 @@ SELECT First_Name,length(First_Name) FROM RandomNames;
 SELECT FirstName,LastName,TitleOfCourtesy, CASE WHEN TitleOfCourtesy = "Ms." THEN "MISSUS" WHEN TitleOfCourtesy = "Mr." THEN "MISTER" WHEN TitleOfCourtesy = "Mrs." THEN "MISTRESS" WHEN TitleOfCourtesy = "Dr." THEN "DOCTOR" END AS "Extended Titles" FROM Employees;
 
 #Creating function for setting extended titles rather than using CASE-WHEN-THEN-END in SELECT
+SELECT FirstName,LastName,Title(TitleOfCourtesy) AS "ExtendedTitle" FROM Employees;
+
+CREATE FUNCTION Title(TitleOfCourtesy CHAR(10))
+RETURNS CHAR(10) DETERMINISTIC
 DELIMITER // #Delimiter // (start) Delimiter ; (end) other than the default ; is used to specify that the block enclosed within the delimiter is a whole and not parts. Otherwise, begin-end will not work.
 
 BEGIN
@@ -76,4 +80,3 @@ END; //
 
 DELIMITER ; 
 
-SELECT FirstName,LastName,Title(TitleOfCourtesy) AS "ExtendedTitle" FROM Employees;
