@@ -1,6 +1,5 @@
 USE customer;
 
-
 #SUBSTRING
 SELECT first_name, SUBSTRING(first_name,2,3) AS ExtractString FROM customers; #Gets the 2nd character from the first name and continues till the 3rd character from the 2nd character.
 
@@ -28,6 +27,7 @@ RETURN CONCAT(first_name," ",last_name);
 #Using the concat function that we've created.
 SELECT number_of_complaints,Full_Name(first_name,last_name) AS Full_Name FROM Customers;
 
+
 #Trim Function
 #Inserting values with spaces into new table to trim.
 CREATE TABLE RandomNames
@@ -43,18 +43,21 @@ VALUES
 #Using trim to remove spaces in the inserted names.
 SELECT First_Name,trim(First_Name) AS TrimmedNames FROM RandomNames;
 
+
 #Length function
 SELECT First_Name,length(First_Name) FROM RandomNames;
+
 
 #CASE in SELECT (Used for setting multiple conditions within the SELECT cmd)
 SELECT FirstName,LastName,TitleOfCourtesy, CASE WHEN TitleOfCourtesy = "Ms." THEN "MISSUS" WHEN TitleOfCourtesy = "Mr." THEN "MISTER" WHEN TitleOfCourtesy = "Mrs." THEN "MISTRESS" WHEN TitleOfCourtesy = "Dr." THEN "DOCTOR" END AS "Extended Titles" FROM Employees;
 
-#Creating function for setting extended titles rather than using CASE-WHEN-THEN-END in SELECT
-SELECT FirstName,LastName,Title(TitleOfCourtesy) AS "ExtendedTitle" FROM Employees;
 
-CREATE FUNCTION Title(TitleOfCourtesy CHAR(10))
-RETURNS CHAR(10) DETERMINISTIC
-DELIMITER // #Delimiter // (start) Delimiter ; (end) other than the default ; is used to specify that the block enclosed within the delimiter is a whole and not parts. Otherwise, begin-end will not work.
+#Creating function for setting extended titles rather than using CASE-WHEN-THEN-END in SELECT
+USE northwind;
+
+DELIMITER //
+CREATE FUNCTION Title ( TitleOfCourtesy CHAR(10 ))
+RETURNS CHAR(15) DETERMINISTIC
 
 BEGIN
 
@@ -78,5 +81,7 @@ BEGIN
 
 END; //
 
-DELIMITER ; 
+DELIMITER ;
 
+#Using title function that we've created to get extendedtitle from the employees table.
+SELECT FirstName,LastName,Title(TitleOfCourtesy) AS "ExtendedTitle" FROM Employees;
