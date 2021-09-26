@@ -1,3 +1,6 @@
+#Deleting data from table
+DELETE FROM <tablename> WHERE <condition> = <conditionvalue>
+
 #Altering data in the previously created employee database.
 USE employee;
 ALTER TABLE employee
