@@ -3,8 +3,8 @@ CREATE DATABASE market_star_schema;
 USE market_star_schema;
 
 #Q2. Create Table shipping_mode_dimen
-#1.	Mode_of_Shipping with data type as a character type, 
-#2.Vehicle_name with data type as a character type and 
+#1. Mode_of_Shipping with data type as a character type, 
+#2. Vehicle_name with data type as a character type and 
 #3. Toll_Required which accepts either true or false, i.e., a Boolean type
 CREATE TABLE shipping_mode_dimen
 (mode_of_shipping CHAR(50),
