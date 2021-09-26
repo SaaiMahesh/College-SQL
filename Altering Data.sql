@@ -3,6 +3,9 @@ USE employee;
 ALTER TABLE employee
 ADD leaving_date varchar(50);
 
+ALTER TABLE employee #Adding a new primary key to the table.
+ADD PRIMARY KEY(leaving);
+
 ALTER TABLE employee
 MODIFY COLUMN leaving_date DATETIME;
 
