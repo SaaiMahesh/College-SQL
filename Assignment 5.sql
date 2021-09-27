@@ -48,7 +48,7 @@ SELECT class,name FROM Student WHERE name LIKE 't%' AND name NOT LIKE '%y%';
 SELECT name FROM Student WHERE class = "1A" AND mtest NOT IN (51,61,71,81,91);
 
 #Q2-D List the students who were born between 22 March 1986 and 21 April 1986
-SELECT name,dob FROM Student WHERE dob BETWEEN 86-03-22 AND 86-04-21;
+SELECT name,dob FROM Student WHERE dob BETWEEN '86-03-22' AND '86-04-21';
 
 #Q3-A  Find the number of girls living in TST
 SELECT COUNT(*) AS "Number of girls living in TST" FROM Student WHERE sex = "F" AND dcode = "TST";
