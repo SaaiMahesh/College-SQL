@@ -31,9 +31,65 @@ VALUES
 (1016,"Tommy","86-12-05",	"M",	"1A",	"G",	"TM",	33),
 (1017,"Till","86-04-14","M",	"2B",	"R",	"TP",81);
 
+CREATE TABLE Bio
+(ID INT NOT NULL,
+FullName CHAR(10),
+Sex CHAR(1),
+Class CHAR(2));
+
+INSERT INTO Bio
+VALUES
+(1,"Suresh","M","1A"),
+(10,"Ramesh","M","2A"),
+(11,"Peter","M","1B"),
+(12,"Trisha","F","1B");
+
+CREATE TABLE Chem
+(ID INT NOT NULL,
+FullName CHAR(10),
+Sex CHAR(1),
+Class CHAR(2));
+
+INSERT INTO Chem
+VALUES
+(1,"Suresh","M","1A"),
+(2,"Sam","M","1B"),
+(11,"Peter","M","1B"),
+(12,"Trisha","F","1B");
+
+CREATE TABLE Phy
+(ID INT NOT NULL,
+FullName CHAR(10),
+Sex CHAR(1),
+Class CHAR(2));
+
+INSERT INTO Phy
+VALUES
+(1,"Suresh","M","1A"),
+(2,"Sam","M","1B"),
+(9,"Tina","F","1C"),
+(12,"Trisha","F","1B");
+
+CREATE TABLE Client
+(Part_No INT,
+Descript CHAR(20),
+Qty INT,
+Supplier CHAR(20));
+
+INSERT INTO Client
+VALUES
+(209,"Axle Pin",190,"MRF India"),
+(213,	"Axle Rod",	200,	"US GoodYear"),
+(231,	"Rim Covers",	7,	"MRF India"),
+(234,	"Shaft Coat",	42,	"China Metals Co."),
+(345,	"Piston Rubber",	23,	"India Reliance"),
+(635,	"Shaft Plug",	9,	"China Metals Co."),
+(654,	"Tyre Rubber",	40,	"US GoodYear"),
+(868,	"Shaft Rod",	24	,"China Metals Co."),
+(879,	"Piston Electric Plug",	13,"India Electronics Co");
 
 #Q1-A List all 2A students
-SELECT name FROM Student WHERE class = "2A";
+SELECT name FROM  Student WHERE class = "2A";
 
 #Q1-B List the names and math test scores of the 1B Boys
 SELECT name,mtest FROM Student WHERE class = "1B";
@@ -60,7 +116,7 @@ SELECT name,mtest FROM Student WHERE mtest >= 50;
 SELECT name,class,COUNT(*) AS "Count" FROM Student WHERE sex = "F" GROUP BY class;
 
 #Q3-D List the number of girls grouped by the year of birth
-SELECT YEAR(dob),COUNT(*) as "Count" FROM Student WHERE sex = "F" GROUP BY "dob";
+SELECT YEAR(dob),COUNT(*) AS "Count" FROM Student WHERE sex = "F" GROUP BY "dob";
 
 #Q3-E Find the average age of Form 1 boys. 
 SELECT AVG((DATE()-dob)/365) FROM Student WHERE sex = "M" AND Class LIKE "1_";
@@ -79,24 +135,6 @@ SELECT * FROM phy WHERE id IN (SELECT id FROM chem);
 
 #Q5-B List the students who are common members of the Chemistry Club and Biology Club but not of  the Physics Club. 
 SELECT * FROM chem WHERE id IN (SELECT id from bio) AND id NOT IN (SELECT id from phy);
-
-CREATE TABLE Client
-(Part_No INT,
-Descript CHAR(20),
-Qty INT,
-Supplier CHAR(20));
-
-INSERT INTO Client
-VALUES
-(209,"Axle Pin",190,"MRF India"),
-(213,	"Axle Rod",	200,	"US GoodYear"),
-(231,	"Rim Covers",	7,	"MRF India"),
-(234,	"Shaft Coat",	42,	"China Metals Co."),
-(345,	"Piston Rubber",	23,	"India Reliance"),
-(635,	"Shaft Plug",	9,	"China Metals Co."),
-(654,	"Tyre Rubber",	40,	"US GoodYear"),
-(868,	"Shaft Rod",	24	,"China Metals Co."),
-(879,	"Piston Electric Plug",	13,"India Electronics Co");
 
 #Q6-A Produce a list of parts in ascending order of quantity. 
 SELECT Part_No,Qty FROM Client ORDER BY Qty ASC;
@@ -120,7 +158,3 @@ DELETE FROM Client WHERE Part_No IN (879,654,231,234);
 #Q6-G Add a field “Date_purchase” to record the date of purchase. 
 ALTER TABLE Client
 ADD Date_Purchase DATE;
-
-
-
-
