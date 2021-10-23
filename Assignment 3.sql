@@ -13,7 +13,7 @@ SELECT ProductName,UnitPrice,Max(UnitPrice) FROM northwind.products; #Max Price
 SELECT ProductName,UnitPrice,Min(UnitPrice) FROM northwind.products; #Min Price
 
 #Q5 Write a query to get product list (id,name,unit price) where current products cost less than $20
-SELECT ProductID,ProductName,UnitPrice FROM northwind.products WHERE UnitPrice > 20;
+SELECT ProductID,ProductName,UnitPrice FROM northwind.products WHERE UnitPrice < 20;
 
 #6 Write a query to get product list (id,name,unit price) where products costs between $15 and $25
 SELECT ProductID,ProductName,UnitPrice FROM northwind.products WHERE UnitPrice BETWEEN 15 and 25;
